@@ -1010,9 +1010,9 @@ Atur berkas ucnode.inc.php (pada klien SLiMS yang akan mengirim data)
 \end_layout
 
 \begin_layout Standard
-Letak dari berkas ini ada di dalam folder utama SLiMS, artinya pengaturan
- ini dilakukan pada sisi simpul (SLiMS yang akan mengirim data ke UCS).
- Ketika disunting menggunakan penyunting teks, maka akan terlihat berkas
+Letak dari file ini ada di dalam folder utama Senayan, artinya setingan
+ ini dilakukan pada sisi node (SLiMS yang akan mengirim data ke UCS).
+ Ketika di buka (menggunakan notapad, geany, gedit dll) maka akan ada file
  konfigurasi sebagai berikut:
 \end_layout
 
@@ -1034,15 +1034,8 @@ $node['name'] = 'SLiMS Library'; // node name
 \end_layout
 
 \begin_layout Standard
-
-\family typewriter
-Serveraddr
-\family default
- merupakan alamat peladen UCS, pada akhir 
-\emph on
-url
-\emph default
- tidak boleh ditutup dengan slash 
+Serveraddr merupakan alamat server dari UCS, pada akhir url tidak boleh
+ ditutup dengan slash 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1050,194 +1043,132 @@ url
 \begin_inset Quotes erd
 \end_inset
 
-.
- Untuk penggunaan lokal pada sistem operasi Windows gunakan 
-\family typewriter
-127.0.0.1
-\family default
-, jangan menggunakan 
-\family typewriter
-localhost
-\family default
-.
- 
-\family typewriter
-Id
-\family default
- merupakan nama simpul dari pengguna SLiMS yang bersangkutan.
- 
-\family typewriter
-Password
-\family default
- merupakan kata sandi yang menghubungkan dengan peladen UCS.
- 
-\family typewriter
-Name
-\family default
- merupakan nama simpul.
- Ini nantinya akan menjadi identitas dari simpul yang bersangkutan dan ditampilk
-an pada UCS.
- 
-\family typewriter
-Id
-\family default
-, 
-\family typewriter
-password
-\family default
-, dan 
-\family typewriter
-name
-\family default
- dari simpul SLiMS ini nantinya didaftarkan dan harus sama persis dengan
- konfigurasi simpul pada 
-\family typewriter
+, untuk penggunanaan testing lokal di Windows gunakan 127.0.0.1 jangan menggunakan
+ localhost.
+ Id merupakan nama node dari senayan yang bersangkutan.
+ Password merupakan kata kunci yang menghubungkan dengan server UCS.
+ Nama merupakan nama Node, dimana ini nantinya akan menjadi nama identitas
+ dari node yang bersangkutan dan ditampilkan di UCS.
+ Id, Password dan Name dari Node Senayan ini nantinya didaftarkan dan harus
+ sama persis dengan konfigurasi node di file 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
 ucserver.inc.php
-\family default
-.
 \end_layout
 
-\begin_layout Subsubsection
-Atur berkas ucserver.inc.php (pada peladen UCS)
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout Subsection
+Seting file ucserver.inc.php (pada master UCS)
 \end_layout
 
 \begin_layout Standard
-Berkas ini terletak dalam 
-\family typewriter
-\size large
-/ucs/
-\family default
-\size default
-.
- Pada berkas ini terdapat dua jenis konfigurasi, yaitu konfigurasi peladen
- dan konfigurasi simpul.
+File ini terletak pada /ucs/ucserver.inc.php.
+ Pada file ini terdapat dua jenis konfigurasi, yaitu konfigurasi server
+ dan konfigurasi node.
+\end_layout
+
+\begin_layout Standard
 
 \emph on
- 
-\emph default
-Berikut adalah isi dari berkas konfigurasi tersebut.
+Berikut adalah konfigurasi server:
 \end_layout
 
 \begin_layout LyX-Code
-// server configuration
+$sysconf['server'] = array( 
 \end_layout
 
 \begin_layout LyX-Code
-$sysconf['server'] = array(
+'id' => 'd13205a03e019e5926b910046b676c6c04f20363', 
 \end_layout
 
 \begin_layout LyX-Code
-    'id' => 'd13205a03e019e5926b910046b676c6c04f20363',
+'name' => $sysconf['library_name'], 
 \end_layout
 
 \begin_layout LyX-Code
-    'name' => $sysconf['library_name'],
+'subname' => $sysconf['library_subname'],
 \end_layout
 
 \begin_layout LyX-Code
-    'subname' => $sysconf['library_subname'],
+'max_node_all' => 5, // maximum connection to server 
 \end_layout
 
 \begin_layout LyX-Code
-    'max_node_all' => 5, // maximum connection to server
+'max_node_conn' => 1 // maximum connection for each node 
 \end_layout
 
 \begin_layout LyX-Code
-    'max_node_conn' => 1 // maximum connection for each node
-\end_layout
-
-\begin_layout LyX-Code
-    );
-\end_layout
-
-\begin_layout LyX-Code
-
-\end_layout
-
-\begin_layout LyX-Code
-// nodes configuration
-\end_layout
-
-\begin_layout LyX-Code
-$sysconf['node']['slims-node'] = array(
-\end_layout
-
-\begin_layout LyX-Code
-    'id' => 'slims-node', // node id (must be UNIQUE, lowercase and not
-   containing any spaces!)
-\end_layout
-
-\begin_layout LyX-Code
-    'name' => 'SLiMS Library', // node name
-\end_layout
-
-\begin_layout LyX-Code
-    'password' => '2325f677e21c1613909c953eb03c57352259cc5d', // this hash
- created with SHA1 algoritm
-\end_layout
-
-\begin_layout LyX-Code
-    'baseurl' => 'http://localhost/s3st15_matoa', // node base URL
-\end_layout
-
-\begin_layout LyX-Code
-    'ip' => '' // IP address of node
-\end_layout
-
-\begin_layout LyX-Code
-    );
+);
 \end_layout
 
 \begin_layout Standard
-Pada 
-\family typewriter
-\size large
-nodes configuration
-\family default
-\size default
-, sesuaikan dengan 
-\family typewriter
-\size large
-ucnode.inc.php
-\family default
-\size default
- di SLiMS yang akan bergabung di UCS.
- Pada dokumentasi ini, 
-\family typewriter
-\size large
-id=slims-node
-\family default
-\size default
- sama dengan 
-\family typewriter
-\size large
-ucnode.inc.php
-\family default
-\size default
- pada langkah 1.1.3.
+
+\emph on
+Konfigurasi node:
+\end_layout
+
+\begin_layout LyX-Code
+$sysconf['node']['slims-node'] = array( 
+\end_layout
+
+\begin_layout LyX-Code
+'id' => 'slims-node', // node id (must be UNIQUE, lowercase and not containing
+ any spaces!)
+\end_layout
+
+\begin_layout LyX-Code
+'name' => 'SLiMS Library', // node name 
+\end_layout
+
+\begin_layout LyX-Code
+'password' => '2325f677e21c1613909c953eb03c57352259cc5d', // this hash created
+ with SHA1 algoritm
+\end_layout
+
+\begin_layout LyX-Code
+'baseurl' => 'http://localhost/senayan3-stable13', // node base URL 
+\end_layout
+
+\begin_layout LyX-Code
+'ip' => '' // IP address of node
+\end_layout
+
+\begin_layout LyX-Code
+); 
 \end_layout
 
 \begin_layout Standard
-Jika simpul yang bergabung semakin banyak, silakan salinkan konfigurasi
- simpul dan pasangkan di bawahnya sesuai dengan jumlah simpul yang akan
- bergabung dan sesuaikan konfigurasinya sesuai simpul masing-masing.
+Pada konfigurasi node, sesuaikan dengan ucnode.inc.php SLiMS yang akan bergabung
+ di UCS.
+ Pada dokumentasi ini, id=slims-node sama dengan ucnode.inc.php pada langkah
+ 1.1.3.
+\end_layout
+
+\begin_layout Standard
+Jika node yang bergabung semakin banyak, silakan copykan konfigurasi node
+ dan paste di bawahnya sesuai dengan jumlah node yang akan bergabung dan
+ sesuaikan konfigurasinya sesuai node masing-masing.
  
 \end_layout
 
 \begin_layout Subsection
-Unggah data bibliografi dari simpul
+Upload data bibliografi dari node
 \end_layout
 
 \begin_layout Standard
-Data bibliografi dapat dikirimkan ke peladen UCS melalui simpul yang sudah
- terdaftar.
- Hal ini dapat dilakukan lewat menu 
-\family typewriter
-\size large
-Bibliografi
-\family default
-\size default
-.
+Data bibliografi dapat dikirimkan ke UCS melalui node yang sudah terdaftar.
+ Hal ini dapat dilakukan lewat menu bibliografi.
 \end_layout
 
 \begin_layout Standard
@@ -1256,7 +1187,7 @@ status open
 \lang bahasa
 \begin_inset Graphics
 	filename images/ucs-uplodbiblio.png
-	scale 50
+	scale 70
 	rotateOrigin center
 
 \end_inset
@@ -1288,25 +1219,13 @@ Upload Bibliografi ke UCS
 \begin_layout Standard
 
 \lang bahasa
-Pilih data bibliografi yang ingin dimasukkan dalam UCS, lalu klik 
-\emph on
-Upload Selected Bibliographic data to union Catalog Server
-\emph default
- (Unggah Data Bibliografi Terpilih ke Peladen Katalog Induk).
- Maka data bibliografi yang telah dipilih akan masuk ke UCS.
- Dalam keadaan belum dikonfigurasi, tampilan Bibliografi pada SLiMS tidak
- memunculkan tombol 
-\emph on
-Upload Selected Bibliographic data to union Catalog Server
-\emph default
- seperti pada gambar di atas.
- Untuk memunculkan, ikuti petunjuk konfigurasi 
-\family typewriter
-\size large
-sysconfig.inc.php
-\family default
-\size default
- di bawah ini.
+Pilih data bibliografi yang ingin dimasukkan dalam UCS, lalu klik Upload
+ Selected Bibliographic data to union Catalog Server.
+ Maka data bibliografi yang telah dipilih akan masuk ada UCS.
+ Dalam keadaan default, tampilan Bibliografi pada SLiMS tidak memunculkan
+ tombol Upload Selected Bibliographic data to union Catalog Server.
+ Untuk memunculkan, ikuti petunjuk konfigurasi sysconfic.inc.php di bawah
+ ini.
 \end_layout
 
 \begin_layout Section
@@ -1316,28 +1235,14 @@ Konfiguasi UCS di sysconfig.inc.php (pada node)
 \end_layout
 
 \begin_layout Standard
-Pada 
-\family typewriter
-\size large
-sysconfig.inc.php
-\family default
-\size default
- ada beberapa baris 
-\emph on
-script
-\emph default
- untuk mengkonfigurasi UCS.
- Baris 
-\emph on
-script
-\emph default
- tersebut adalah:
+Pada sysconfig.inc.php ada beberapa script yang dapat mengkonfigurasi UCS,
+ script tersebut adalah:
 \end_layout
 
 \begin_layout LyX-Code
 
 \lang bahasa
-$sysconf['ucs']['enable'] = false; 
+$sysconf['ucs']['enable'] = true; 
 \end_layout
 
 \begin_layout LyX-Code
@@ -1349,77 +1254,19 @@ $sysconf['ucs']['auto_delete'] = true;
 \begin_layout LyX-Code
 
 \lang bahasa
-$sysconf['ucs']['auto_insert'] = false;
+$sysconf['ucs']['auto_insert'] = true;
 \end_layout
 
 \begin_layout Standard
 
 \lang bahasa
-Baris 
-\emph on
-script
-\emph default
- pertama, 
-\family typewriter
-\size large
-enable
-\family default
-\size default
-, jika 
-\family typewriter
-\size large
-true
-\family default
-\size default
- akan menampilkan fasilitas 
-\emph on
-Upload Bibliographic Data to Union Catalog Server
-\emph default
- yang muncul di modul 
-\emph on
-Bibliography
-\emph default
-.
- Baris 
-\emph on
-script
-\emph default
- kedua, 
-\family typewriter
-\size large
-auto delete
-\family default
-\size default
-, jika 
-\family typewriter
-\size large
-true
-\family default
-\size default
- akan mengakibatkan apabila ada data yang sudah diunggah ke peladen UCS
- dan pada simpul dihapus, maka data yang telah ada di peladen UCS akan ikut
- terhapus.
- Baris 
-\emph on
-script
-\emph default
- ketiga, 
-\family typewriter
-\size large
-auto insert
-\family default
-\size default
-, mengakibatkan data yang diisikan pada modul 
-\emph on
-Bibliography
-\emph default
- pada simpul akan otomatis masuk pada UCS begitu diklik tombol 
-\family typewriter
-\size large
-save
-\family default
-\size default
-.
+Script pertama, jika true akan menampilkan fasilitas Upload Bibliographic
+ data to Union Catalog Server yang muncul di modul Bibliography.
+ Auto Delete, jika diisi true akan mengakibatkan jika ada data yang sudah
+ diupload ke UCS, dan pada Node di hapus, maka data yang telah ada di UCS
+ akan ikut terhapus.
+ Auto Insert mengakibatkan data yang diisikan pada modul bibliography pada
+ Node akan otomatis masuk pada UCS dengan tanpa di Upload.
  
 \end_layout
 
@@ -1430,29 +1277,10 @@ Modul Administrasi UCS
 \end_layout
 
 \begin_layout Standard
-Modul adminitrasi UCS dapat diakses pada alamat 
-\family typewriter
-http://localhost/nama_direktori_ucs/index.php?p=login
-\family default
-.
- Login standar adalah, 
-\emph on
-username
-\emph default
- (nama pengguna) 
-\family typewriter
-admin
-\family default
- dan 
-\emph on
-password
-\emph default
- (kata sandi) 
-\family typewriter
-admin
-\family default
-.
- Maka UCS akan menampilkan modul administrasinya seperti berikut:
+Modul adminitrasi UCS dapat diakses dengan mengakses url (misalnya) http://local
+host/ucs-2.0/index.php?p=login.
+ Standar untuk masuk pada modul ini adalah username admin dan password admin.
+ Maka UCS akan menampilkan modul administrasinya sebagai berikut:
 \end_layout
 
 \begin_layout Standard
@@ -1501,34 +1329,22 @@ Halaman Admin UCS
 \end_layout
 
 \begin_layout Standard
-Halaman administrasi digunakan untuk mengelola data yang sudah ada masuk
- pada peladen UCS.
- Modul dalam laman administrasi UCS ini adalah 
-\emph on
-Bibliography
-\emph default
-, 
-\emph on
-Master File
-\emph default
- dan 
-\emph on
-System
-\emph default
-.
+Halaman admin ini digunakan untuk mengelola data yang sudah ada dalam server
+ UCS.
+ Modul dalam UCS ini adalah Bibliography, Master File dan System.
  
 \end_layout
 
 \begin_layout Subsection
-Modul Bibliography
+Bibliography
 \end_layout
 
 \begin_layout Standard
-Modul ini digunakan untuk mengelola data bibliografi yang sudah masuk ke
- peladen UCS.
- Pengelolaan ini meliputi perubahan dan penghapusan.
- Selain itu pada modul ini juga terdapat fitur ekspor data bibliografi UCS
- ke format .csv.
+Bibliography ini digunakan untuk mengelola data bibliografi yang sudah diada
+ di server UCS.
+ Pengelolaan ini adalah meliputi perubahan dan penghapusan.
+ Selain itu pada bibliografi ini juga terdapat fitur export data bibliografi
+ UCS ke format .csv.
  
 \end_layout
 
@@ -1623,43 +1439,25 @@ Nodes Data Removal
 \end_layout
 
 \begin_layout Subsection
-Modul Master File
+Master File
 \end_layout
 
 \begin_layout Standard
-Modul ini digunakan untuk mengelola (menambah, menghapus, menyunting) data
- 
-\family typewriter
-master file
-\family default
-.
- Data yang dapat diubah adalah: 
-\family typewriter
-GMD, Publisher, Author, Subject, Place, Doc.
- Language
-\family default
- dan 
-\family typewriter
-Frequency
-\family default
-.
+Master File digunakan untuk mengelola (menambah, menghapus, mengedit) data
+ master file.
+ Data yang dapat diubah adalah: GMD, Publisher, Author, Subject, Place,
+ Doc.
+ Language dan Frequency.
 \end_layout
 
 \begin_layout Subsection
-Modul Systems
+Systems
 \end_layout
 
 \begin_layout Standard
-Pada modul ini terdapat beberapa fitur, antara lain: 
-\family typewriter
-System Configuration, Content, Modules, System Users, User Group, Nodes
- Poll, System Log
-\family default
- dan 
-\family typewriter
-Database Backup
-\family default
-.
+Pada Systems ini terdapat beberapa fitur, antara lain: System Configuration,
+ Content, Modules, System Users, User Group, Nodes Poll, System Log dan
+ Database Backup.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1667,12 +1465,8 @@ System Configuration
 \end_layout
 
 \begin_layout Standard
-Digunakan untuk mengkonfigurasi nama UCS, nama tambahan UCS, Templat, bahasa,
- jumlah koleksi yang ditampilkan, setingan tampilan XML dan 
-\emph on
-session Timeout
-\emph default
-.
+Digunakan untuk mengkonfigurasi nama UCS, nama tambahan UCS, Template, bahasa,
+ jumlah koleksi yang ditampilkan, setingan tampilan XML dan session Timeout.
 \end_layout
 
 \begin_layout Standard
@@ -1683,7 +1477,7 @@ session Timeout
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1729,11 +1523,8 @@ Content
 \begin_layout Standard
 
 \lang bahasa
-Fitur ini digunakan untuk menambah, menyunting atau menghapus 
-\emph on
-Content
-\emph default
- yang ada di UCS.
+Fitur ini digunakan untuk menambah, mengedit atau menghapus Content yang
+ ada di UCS.
 \end_layout
 
 \begin_layout Standard
@@ -1744,7 +1535,7 @@ Content
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1788,7 +1579,7 @@ Modules
 \begin_layout Standard
 
 \lang bahasa
-Digunakan untuk mengatur modul baru yang akan ditambahkan pada UCS.
+Digunakan untuk menseting modul baru yang ditambahkan pada UCS.
 \end_layout
 
 \begin_layout Standard
@@ -1799,7 +1590,7 @@ Digunakan untuk mengatur modul baru yang akan ditambahkan pada UCS.
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1845,8 +1636,8 @@ System Users
 \begin_layout Standard
 
 \lang bahasa
-Untuk menambahkan pengguna baru yang diijinkan untuk mengakses halaman administr
-asi UCS.
+Untuk menambahkan user baru yang diijinkan untuk mengakses halaman administrasi
+ UCS.
 \end_layout
 
 \begin_layout Standard
@@ -1857,7 +1648,7 @@ asi UCS.
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1903,7 +1694,7 @@ Users Group
 \begin_layout Standard
 
 \lang bahasa
-Digunakan untuk menambah, menyunting atau menghapus Group.
+Digunakan untuk menambah, mengedit atau menghapus Group.
 \end_layout
 
 \begin_layout Standard
@@ -1914,7 +1705,7 @@ Digunakan untuk menambah, menyunting atau menghapus Group.
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1960,19 +1751,8 @@ Nodes Poll
 \begin_layout Standard
 
 \lang bahasa
-Memperlihatkan aktifitas 
-\emph on
-Node
-\emph default
- (simpul), IP simpul waktu mulai 
-\emph on
-request
-\emph default
- dan akhir 
-\emph on
-request
-\emph default
- serta status dari simpul.
+Memberlihatkan aktifitas Node, Ip Node waktu mulai request dan akhir request
+ serta status dari Node.
 \end_layout
 
 \begin_layout Standard
@@ -1983,7 +1763,7 @@ request
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2029,7 +1809,7 @@ System Log
 \begin_layout Standard
 
 \lang bahasa
-Menunjukkan rincian aktifitas simpul yang terhubung pada server UCS.
+Menunjukkan rincian aktifitas node yang terhubung pada server UCS.
  
 \end_layout
 
@@ -2041,7 +1821,7 @@ Menunjukkan rincian aktifitas simpul yang terhubung pada server UCS.
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2087,7 +1867,7 @@ Database Backup
 \begin_layout Standard
 
 \lang bahasa
-Digunakan untuk membuat cadangan pangkalan data UCS.
+Digunakan untuk mebuat database cadangan UCS.
  
 \end_layout
 
@@ -2099,7 +1879,7 @@ Digunakan untuk membuat cadangan pangkalan data UCS.
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
