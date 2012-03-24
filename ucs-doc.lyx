@@ -713,7 +713,6 @@ status collapsed
 
 \begin_layout Plain Layout
 
-\lang bahasa
 http://slims.web.id
 \end_layout
 
@@ -725,7 +724,6 @@ status collapsed
 
 \begin_layout Plain Layout
 
-\lang bahasa
 http://github.com/slims/
 \end_layout
 
@@ -747,7 +745,7 @@ http://github.com/slims/
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -858,7 +856,7 @@ Mengaktifkan UCS sama dengan menginstall UCS.
  Proses instalasi UCS mirip dengan proses instalasi SLiMS.
  Dimulai dengan mengunduh, mengekstrak, membuat database, mengimport tabel
  database.
- Beberapa langkah dijelaskan di bawah ini:
+ Beberapa langkah tersebut dijelaskan di bawah ini:
 \end_layout
 
 \begin_layout Subsection
@@ -885,6 +883,7 @@ Pada ucsysconfig.inc.php harus didefinisikan host, port, nama database, username
 status open
 
 \begin_layout Plain Layout
+
 /ucs/ucsysconfig.inc.php
 \end_layout
 
@@ -966,6 +965,7 @@ Serveraddr merupakan alamat server dari UCS, pada akhir url tidak boleh
 status collapsed
 
 \begin_layout Plain Layout
+
 ucserver.inc.php
 \end_layout
 
