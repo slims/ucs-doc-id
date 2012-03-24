@@ -1441,7 +1441,7 @@ admin
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1449,7 +1449,7 @@ status collapsed
 \lang bahasa
 \begin_inset Graphics
 	filename images/ucs-admin.png
-	scale 70
+	scale 50
 	rotateOrigin center
 
 \end_inset
@@ -1669,7 +1669,7 @@ status open
 \lang bahasa
 \begin_inset Graphics
 	filename images/ucs-systconf.png
-	scale 75
+	scale 50
 	rotateOrigin center
 
 \end_inset
@@ -1730,7 +1730,7 @@ status open
 \lang bahasa
 \begin_inset Graphics
 	filename images/ucs-content.png
-	scale 70
+	scale 50
 	rotateOrigin center
 
 \end_inset
@@ -1785,7 +1785,7 @@ status open
 \lang bahasa
 \begin_inset Graphics
 	filename images/ucs-modul.png
-	scale 70
+	scale 42
 	rotateOrigin center
 
 \end_inset
@@ -1843,7 +1843,7 @@ status open
 \lang bahasa
 \begin_inset Graphics
 	filename images/ucs-sysuser.png
-	scale 70
+	scale 42
 	rotateOrigin center
 
 \end_inset
@@ -1900,7 +1900,7 @@ status open
 \lang bahasa
 \begin_inset Graphics
 	filename images/ucs-usergrup.png
-	scale 70
+	scale 42
 	rotateOrigin center
 
 \end_inset
@@ -2027,7 +2027,7 @@ status open
 \lang bahasa
 \begin_inset Graphics
 	filename images/ucs-syslog.png
-	scale 70
+	scale 40
 	rotateOrigin center
 
 \end_inset
@@ -2085,7 +2085,7 @@ status open
 \lang bahasa
 \begin_inset Graphics
 	filename images/ucs-backup.png
-	scale 70
+	scale 45
 	rotateOrigin center
 
 \end_inset
